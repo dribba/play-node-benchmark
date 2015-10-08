@@ -19,7 +19,7 @@ class DataActor(size: Int) extends Actor {
 
   def aggregate(startEvents: Array[BenchmarkedEvent], finishEvents: Array[BenchmarkedEvent]): Array[PartialAggregation] = {
     Array((for {
-      i <- 0 until size
+      i <- 0 until size if startEvents(i) != null && finishEvents(i) != null
       StartEvent(_, sTime, sMem) = startEvents(i)
       FinishedEvent(StartEvent(id, eTime, eMem), result) = finishEvents(i)
     } yield {
@@ -72,7 +72,11 @@ object Aggregations {
     val name = "Engine"
   }
 
-  val available = List(RequestResult, EngineResult)
+  object TestResult extends Aggregation(classOf[TestStart] -> classOf[TestFinished]) {
+    val name = "Test"
+  }
+
+  val available = List(TestResult, RequestResult, EngineResult)
 
   def apply(evt: Class[_ <: Event]): Aggregation =
     available.find(a => a.evts._1 == evt || a.evts._2 == evt).get

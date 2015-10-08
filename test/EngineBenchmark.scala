@@ -4,7 +4,7 @@ import javax.script.{ScriptEngine, ScriptEngineManager}
 import akka.actor.ActorSystem
 import akka.util.Timeout
 import benchmark.Reporter
-import benchmark.Reporter.{RequestFinished, RequestStart}
+import benchmark.Reporter.{TestFinished, TestStart, RequestFinished, RequestStart}
 import controllers.React
 import play.api.mvc._
 import play.api.test.{FakeHeaders, PlaySpecification, FakeApplication, FakeRequest}
@@ -42,12 +42,19 @@ class EngineBenchmark extends PlaySpecification {
 
     val reporter = Aggregator(name, runs)
 
+    val testReq = request(0)
+    reporter.report(Reporter.event(TestStart)(testReq))
+
     val results = for {
       i <- 0 until runs
       req = request(i.toLong)
     } yield timing(reporter)(block(reporter))(req)
 
-    println(await(Future.sequence(results).flatMap(_ => reporter.printReport), 1, TimeUnit.HOURS))
+    await(Future.sequence(results), 1, TimeUnit.HOURS)
+
+    reporter.report(Reporter.event(TestFinished)(testReq))
+
+    await(reporter.printReport.map(println), 5, TimeUnit.MINUTES)
   }
 
 

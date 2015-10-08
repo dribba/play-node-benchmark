@@ -101,8 +101,12 @@ object Reporter {
 
   case class RequestStart(event: StartEvent)  extends Event
 
+  case class TestStart(event: StartEvent)  extends Event
+
   case class EngineFinished(event: FinishedEvent) extends Event
 
   case class RequestFinished(event: FinishedEvent) extends Event
+
+  case class TestFinished(event: FinishedEvent) extends Event
 
 }
