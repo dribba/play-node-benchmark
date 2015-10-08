@@ -1,0 +1,13 @@
+@(title: String, content: play.twirl.api.Html)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@title</title>
+</head>
+    <body>
+        <div id="content">@content</div>
+    </body>
+    <script type='text/javascript' src='@routes.Assets.versioned("javascripts/react/public/output.js")'></script>
+</html>

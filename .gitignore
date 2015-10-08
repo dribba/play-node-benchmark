@@ -1,0 +1,14 @@
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+app/assets/javascripts/react/public
+node_modules
+activator
+activator-launch-*
+activator.bat
+npm-debug.log

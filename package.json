@@ -1,0 +1,16 @@
+{
+  "name": "play-node-benchmark",
+  "private": true,
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "grunt-browserify": "^4.0.1",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3",
+    "reactify": "^1.1.1"
+  }
+}
