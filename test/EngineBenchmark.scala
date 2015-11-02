@@ -91,23 +91,23 @@ class EngineBenchmark extends PlaySpecification {
 
     running(FakeApplication()) {
 
-      run(test("Client")(React.clientSide))(StressL2)
+//      run(test("Client")(React.clientSide))(StressL2)
+//
+//      run(test("Nashorn new engine")(React.nashorn))(Single, Cores, StressL0)
+//
+//      run {
+//        withFactory(factory => {
+//          test("Nashorn same factory")(rep => req => React.nas(factory.getEngineByName("nashorn"))(rep)(req))
+//        })
+//      }(Single, Cores, StressL0)
+//
+//      run {
+//        withEngine(engine => {
+//          test("Nashorn same engine")(React.nas(engine)(_))
+//        })
+//      }(Single, Cores, StressL0, StressL1, StressL2, StressL3)
 
-      run(test("Nashorn new engine")(React.nashorn))(Single, Cores, StressL0)
-
-      run {
-        withFactory(factory => {
-          test("Nashorn same factory")(rep => req => React.nas(factory.getEngineByName("nashorn"))(rep)(req))
-        })
-      }(Single, Cores, StressL0)
-
-      run {
-        withEngine(engine => {
-          test("Nashorn same engine")(React.nas(engine)(_))
-        })
-      }(Single, Cores, StressL0, StressL1, StressL2, StressL3)
-
-      run(test("Node")(React.serverSide))(Single, Cores, StressL0, StressL1)
+      run(test("Node")(React.serverSide))(Single, Cores, StressL0, StressL1, StressL2)
     }
     true
   }
