@@ -48,8 +48,13 @@ Totals:
         success: 1000 (100.0%)
         
         
-Nashorn(same engine) vs Node + JSE:
+*Nashorn(using same engine) vs Node + JSE:*
+
+![Rendering time](https://raw.githubusercontent.com/dribba/play-node-benchmark/master/results/raw_rendering.png)
+
+![Memory usage](https://raw.githubusercontent.com/dribba/play-node-benchmark/master/results/memory_usage.png)
 
 
-        
 
+#### Conclusions
+Even when I had very little expectations for Nashorn, I was quite surprised that, even with 10 000 render requests, it didn't even sweat. What I was also surprised about, was that Node+JSE starts giving up at around 350~ requests(too many files open). Interestingly nashorn can take very long to start a new engine, but reusing the same has Node comparable performance.
